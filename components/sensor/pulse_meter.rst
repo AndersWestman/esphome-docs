@@ -9,6 +9,9 @@ The pulse meter sensor allows you to count the number and frequency of pulses on
 for the :doc:`pulse counter component </components/sensor/pulse_counter>`.
 Rather than counting pulses over a fixed time interval, the pulse meter sensor measures the time between pulses. The precise manner in which this is done depends on the ``internal_filter_mode`` option. This leads to a higher resolution, especially for low pulse rates, as the pulse counter sensor is limited by the number of pulses within a time interval.
 
+From the second detected pulse and on after (re)boot or ``timeout`` the pulse meter sensor (pulses/min) will publish a new value after every detected pulse, compered to the fixed ``update_interval`` in the pulse counter.
+The total sensor (if configured) will always publish a new value after every detected pulse.
+
 Here's a comparison of the two sensors.  The pulse meter is the smoother line.  Both are set to an update interval of 10 seconds (using the ``update_interval`` and the ``throttle_average`` option respectively):
 
 .. figure:: /images/pulse-counter_vs_pulse-meter.png
@@ -70,6 +73,7 @@ Counting total pulses
 
 When the total sensor is configured, ``pulse_meter`` also reports the total
 number of pulses measured.
+The new value is published after every detected pulse. 
 
 .. code-block:: yaml
 
@@ -110,6 +114,7 @@ See Also
 - :doc:`/components/sensor/pulse_counter`
 - :doc:`/components/sensor/total_daily_energy`
 - :doc:`/cookbook/power_meter`
+- :doc:`/cookbook/pulse-catcher`
 - `Home Assistant Glow 🌟 <https://github.com/klaasnicolaas/home-assistant-glow/>`__.
 - :apiref:`pulse_meter/pulse_meter_sensor.h`
 - :ghedit:`Edit`
